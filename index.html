@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan de Negocio — Impresoras Portátiles Inkjet México</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0e17;--bg2:#111827;--bg3:#1a2332;--cyan:#00e5ff;--cyan2:#00b8d4;--cyan-glow:rgba(0,229,255,.15);--text:#e0e6ed;--text2:#8899aa;--white:#fff;--gradient:linear-gradient(135deg,#00e5ff,#0091ea);--red:#ff4757;--green:#2ed573;--gold:#ffa502}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;overflow-x:hidden}
+::selection{background:var(--cyan);color:var(--bg)}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;background:rgba(10,14,23,.92);backdrop-filter:blur(12px);z-index:1000;border-bottom:1px solid rgba(0,229,255,.1);padding:0 2rem}
+nav .inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
+nav .logo{font-weight:800;font-size:1.1rem;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav .links{display:flex;gap:1.5rem;list-style:none}
+nav .links a{color:var(--text2);text-decoration:none;font-size:.85rem;transition:color .2s}
+nav .links a:hover{color:var(--cyan)}
+.hamburger{display:none;cursor:pointer;flex-direction:column;gap:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 2rem 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 40%,rgba(0,229,255,.06) 0%,transparent 50%),radial-gradient(circle at 70% 60%,rgba(0,145,234,.04) 0%,transparent 50%);animation:pulse 8s ease-in-out infinite alternate}
+@keyframes pulse{0%{transform:scale(1)}100%{transform:scale(1.05)}}
+.hero-content{position:relative;z-index:1;max-width:800px}
+.hero h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.15;margin-bottom:1rem}
+.hero h1 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:1.15rem;color:var(--text2);max-width:600px;margin:0 auto 2rem}
+.badge{display:inline-block;background:var(--cyan-glow);border:1px solid rgba(0,229,255,.3);color:var(--cyan);padding:.4rem 1rem;border-radius:20px;font-size:.8rem;font-weight:600;margin-bottom:1.5rem;letter-spacing:.5px}
+.stats-row{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-top:2rem}
+.stat{text-align:center}
+.stat .num{font-size:2rem;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat .label{font-size:.75rem;color:var(--text2);text-transform:uppercase;letter-spacing:1px}
+
+/* SECTIONS */
+section{padding:80px 2rem}
+.container{max-width:1100px;margin:0 auto}
+.section-title{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;margin-bottom:.5rem}
+.section-title span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.section-sub{color:var(--text2);margin-bottom:3rem;font-size:1rem}
+.reveal{opacity:0;transform:translateY(30px);transition:all .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* CARDS */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+.card{background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:2rem;transition:all .3s}
+.card:hover{border-color:rgba(0,229,255,.2);transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,229,255,.08)}
+.card h3{font-size:1.1rem;margin-bottom:.5rem;color:var(--white)}
+.card .price{font-size:1.8rem;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:.5rem 0}
+.card .tag{display:inline-block;padding:.2rem .6rem;border-radius:4px;font-size:.7rem;font-weight:600;margin-bottom:.5rem}
+.tag-hero{background:rgba(0,229,255,.15);color:var(--cyan)}
+.tag-entry{background:rgba(46,213,115,.15);color:var(--green)}
+.tag-premium{background:rgba(255,165,2,.15);color:var(--gold)}
+.card ul{list-style:none;margin-top:1rem}
+.card ul li{padding:.3rem 0;font-size:.9rem;color:var(--text2)}
+.card ul li::before{content:'✓ ';color:var(--cyan);font-weight:700}
+
+/* TABLES */
+table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.9rem}
+th{background:var(--bg3);color:var(--cyan);text-align:left;padding:.8rem 1rem;font-weight:600;font-size:.8rem;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid rgba(0,229,255,.2)}
+td{padding:.7rem 1rem;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text2)}
+tr:hover td{background:rgba(0,229,255,.03)}
+.table-wrap{overflow-x:auto;border-radius:8px;border:1px solid rgba(255,255,255,.06)}
+
+/* RAZOR */
+.razor-box{background:linear-gradient(135deg,rgba(0,229,255,.08),rgba(0,145,234,.05));border:1px solid rgba(0,229,255,.15);border-radius:12px;padding:2rem;margin:2rem 0}
+.razor-box h3{color:var(--cyan);margin-bottom:1rem}
+.razor-row{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:1rem}
+.razor-item{text-align:center}
+.razor-item .big{font-size:2.5rem;font-weight:800;color:var(--white)}
+.razor-item .big.cyan{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.razor-item p{color:var(--text2);font-size:.85rem;margin-top:.3rem}
+
+/* GAP VISUAL */
+.gap-visual{background:var(--bg2);border-radius:12px;padding:2rem;margin:2rem 0;border:1px solid rgba(255,255,255,.06)}
+.gap-bar{display:flex;align-items:center;margin:.5rem 0;font-size:.85rem}
+.gap-bar .name{width:140px;color:var(--text2);flex-shrink:0}
+.gap-bar .bar{height:8px;border-radius:4px;margin:0 1rem;flex:1;position:relative}
+.gap-bar .price-label{color:var(--text2);font-size:.75rem;white-space:nowrap}
+.bar-phezer{background:rgba(255,71,87,.4);max-width:15%}
+.bar-rigel{background:rgba(255,71,87,.3);max-width:20%}
+.bar-bentsai{background:rgba(255,165,2,.4);max-width:30%}
+.bar-us1{background:var(--gradient);max-width:45%}
+.bar-us2{background:var(--gradient);max-width:65%}
+.bar-industrial{background:rgba(255,255,255,.1);max-width:100%}
+.gap-highlight{background:rgba(0,229,255,.08);border:1px dashed rgba(0,229,255,.3);border-radius:8px;padding:.5rem 1rem;margin:.3rem 0;font-size:.8rem;color:var(--cyan)}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:2rem;margin:2rem 0}
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--cyan),rgba(0,229,255,.1))}
+.tl-item{position:relative;margin-bottom:2rem;padding-left:2rem}
+.tl-item::before{content:'';position:absolute;left:-2rem;top:.4rem;width:16px;height:16px;border-radius:50%;background:var(--bg);border:2px solid var(--cyan);z-index:1}
+.tl-item.active::before{background:var(--cyan);box-shadow:0 0 12px rgba(0,229,255,.5)}
+.tl-item h4{color:var(--white);font-size:.95rem;margin-bottom:.3rem}
+.tl-item .week{color:var(--cyan);font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:1px}
+.tl-item p{color:var(--text2);font-size:.85rem}
+
+/* COLLAB SECTION */
+.collab{background:linear-gradient(135deg,rgba(0,229,255,.06),rgba(0,145,234,.03));border:1px solid rgba(0,229,255,.15);border-radius:16px;padding:3rem;margin:2rem 0;position:relative;overflow:hidden}
+.collab::before{content:'';position:absolute;top:-50%;right:-30%;width:60%;height:200%;background:radial-gradient(circle,rgba(0,229,255,.05) 0%,transparent 70%)}
+.collab h3{font-size:1.5rem;color:var(--white);margin-bottom:1rem}
+.collab blockquote{font-style:italic;color:var(--text);border-left:3px solid var(--cyan);padding-left:1.5rem;margin:1.5rem 0;font-size:1rem;line-height:1.8}
+.collab-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1.5rem}
+.collab-item{background:rgba(0,0,0,.2);border-radius:8px;padding:1.2rem;text-align:center}
+.collab-item .icon{font-size:2rem;margin-bottom:.5rem}
+.collab-item h4{font-size:.9rem;color:var(--white);margin-bottom:.3rem}
+.collab-item p{font-size:.8rem;color:var(--text2)}
+
+/* TEAM */
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
+.team-card{background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:1.5rem;text-align:center}
+.team-card .role{color:var(--cyan);font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:.3rem}
+.team-card h3{color:var(--white);font-size:1.1rem;margin-bottom:.5rem}
+.team-card p{color:var(--text2);font-size:.85rem}
+
+/* CHART */
+canvas{max-width:100%;margin:2rem auto;display:block;border-radius:8px}
+.chart-container{background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:2rem;margin:2rem 0}
+.chart-container h3{color:var(--white);margin-bottom:1rem;font-size:1.1rem}
+
+/* FOOTER */
+footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(255,255,255,.04);color:var(--text2);font-size:.85rem}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav .links{display:none;position:absolute;top:60px;left:0;width:100%;background:rgba(10,14,23,.98);flex-direction:column;padding:1rem 2rem;border-bottom:1px solid rgba(0,229,255,.1)}
+  nav .links.open{display:flex}
+  .hamburger{display:flex}
+  .stats-row{gap:1rem}
+  .stat .num{font-size:1.5rem}
+  .razor-row{grid-template-columns:1fr}
+  .card-grid{grid-template-columns:1fr}
+  .gap-bar .name{width:80px;font-size:.75rem}
+  section{padding:60px 1rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+<div class="inner">
+  <div class="logo">⚡ PLAN DE IMPORTACIÓN</div>
+  <div class="hamburger" onclick="document.querySelector('.links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+  <ul class="links">
+    <li><a href="#mercado">Mercado</a></li>
+    <li><a href="#producto">Producto</a></li>
+    <li><a href="#razor">Razor & Blades</a></li>
+    <li><a href="#verticales">Verticales</a></li>
+    <li><a href="#competencia">Competencia</a></li>
+    <li><a href="#financieros">Financieros</a></li>
+    <li><a href="#plan90">Plan 90 Días</a></li>
+    <li><a href="#equipo">Equipo</a></li>
+    <li><a href="#colaboracion">Colaboración</a></li>
+  </ul>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-content">
+  <div class="badge">PLAN DE NEGOCIO — MARZO 2026</div>
+  <h1>Impresoras Portátiles <span>Inkjet</span> para México</h1>
+  <p>Codificación industrial accesible. Modelo razor & blades con revenue recurrente por tintas. Importación directa de China.</p>
+  <div class="stats-row">
+    <div class="stat"><div class="num">$17.5B</div><div class="label">Mercado global 2024</div></div>
+    <div class="stat"><div class="num">6-10%</div><div class="label">CAGR crecimiento</div></div>
+    <div class="stat"><div class="num">#1</div><div class="label">México CAGR Norteamérica</div></div>
+    <div class="stat"><div class="num">69%</div><div class="label">Margen bruto</div></div>
+  </div>
+</div>
+</section>
+
+<!-- MERCADO -->
+<section id="mercado">
+<div class="container reveal">
+  <h2 class="section-title">El <span>Mercado</span></h2>
+  <p class="section-sub">México es el país con mayor crecimiento en codificación y marcaje de Norteamérica</p>
+  
+  <div class="card-grid">
+    <div class="card">
+      <h3>🌍 Mercado Global</h3>
+      <p class="price">$24.9B</p>
+      <p style="color:var(--text2);font-size:.9rem">Proyección 2030 — Crecimiento 6-10.4% CAGR anual</p>
+      <ul>
+        <li>TIJ es el segmento de más rápido crecimiento</li>
+        <li>Norteamérica: $5,421M en 2024</li>
+        <li>Alimentos domina, farma crece más rápido</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🇲🇽 México — La Oportunidad</h3>
+      <p class="price">+5.2%</p>
+      <p style="color:var(--text2);font-size:.9rem">Crecimiento manufactura 2022 (vs 2.3% histórico)</p>
+      <ul>
+        <li>Mayor CAGR de Norteamérica en codificación</li>
+        <li>650,000+ establecimientos de alimentos</li>
+        <li>Nearshoring: +3% PIB en 5 años</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>📋 Regulación = Demanda</h3>
+      <p class="price">NOM-051</p>
+      <p style="color:var(--text2);font-size:.9rem">Etiquetado obligatorio alimentos + NOM-137 farmacéutica</p>
+      <ul>
+        <li>Fecha, lote, caducidad obligatorios</li>
+        <li>Multas $3K-$300K MXN por incumplimiento</li>
+        <li>Serialización farmacéutica en desarrollo</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- PRODUCTO -->
+<section id="producto" style="background:var(--bg2)">
+<div class="container reveal">
+  <h2 class="section-title">Los <span>Productos</span></h2>
+  <p class="section-sub">3 modelos que cubren desde entry-level hasta premium industrial</p>
+  
+  <div class="card-grid">
+    <div class="card">
+      <span class="tag tag-entry">ENTRY-LEVEL</span>
+      <h3>M05</h3>
+      <p class="price">$2,190</p>
+      <ul>
+        <li>Pantalla LCD 2.4"</li>
+        <li>25 idiomas soportados</li>
+        <li>Impresión curva/cóncava</li>
+        <li>Boot screen personalizable</li>
+        <li>Margen: 59%</li>
+      </ul>
+    </div>
+    <div class="card" style="border-color:rgba(0,229,255,.2)">
+      <span class="tag tag-hero">★ HERO PRODUCT</span>
+      <h3>MT1</h3>
+      <p class="price">$4,490</p>
+      <ul>
+        <li>Pantalla táctil 2.8"</li>
+        <li>Bluetooth conectividad</li>
+        <li>Impresión curva/cóncava</li>
+        <li>Mejor relación features/precio</li>
+        <li>Margen: 72%</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag tag-premium">PREMIUM/INDUSTRIAL</span>
+      <h3>MH08</h3>
+      <p class="price">$6,990</p>
+      <ul>
+        <li>Carcasa metálica</li>
+        <li>Pantalla 2.5" + Bluetooth</li>
+        <li>Impresión curva/cóncava</li>
+        <li>Máxima durabilidad industrial</li>
+        <li>Margen: 77%</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="table-wrap" style="margin-top:2rem">
+    <table>
+      <tr><th>Especificación</th><th>M05</th><th>MT1</th><th>MH08</th></tr>
+      <tr><td>Altura impresión</td><td>12.7mm</td><td>12.7mm</td><td>12.7mm</td></tr>
+      <tr><td>Resolución</td><td>300-600 DPI</td><td>300-600 DPI</td><td>300-600 DPI</td></tr>
+      <tr><td>Pantalla táctil</td><td>❌</td><td>✅ 2.8"</td><td>✅ 2.5"</td></tr>
+      <tr><td>Bluetooth</td><td>❌</td><td>✅</td><td>✅</td></tr>
+      <tr><td>Carcasa</td><td>Plástico</td><td>Plástico</td><td>Metal</td></tr>
+      <tr><td>Cartucho</td><td>TIJ 2.5 / 42mL</td><td>TIJ 2.5 / 42mL</td><td>TIJ 2.5 / 42mL</td></tr>
+      <tr><td>FOB USD</td><td>$37.50</td><td>$52.50</td><td>$67.50</td></tr>
+      <tr><td>Landed MXN</td><td>~$900</td><td>~$1,265</td><td>~$1,630</td></tr>
+      <tr><td>Retail MXN</td><td>$2,190</td><td>$4,490</td><td>$6,990</td></tr>
+      <tr><td>Margen bruto</td><td>59%</td><td>72%</td><td>77%</td></tr>
+    </table>
+  </div>
+</div>
+</section>
+
+<!-- RAZOR & BLADES -->
+<section id="razor">
+<div class="container reveal">
+  <h2 class="section-title">Modelo <span>Razor & Blades</span></h2>
+  <p class="section-sub">La impresora es el vehículo. Las tintas son el negocio.</p>
+
+  <div class="razor-box">
+    <h3>📊 Revenue: Hardware vs. Tintas (100 clientes, Año 1)</h3>
+    <div class="razor-row">
+      <div class="razor-item">
+        <div class="big">$449K</div>
+        <p>Revenue por hardware (una vez)</p>
+      </div>
+      <div class="razor-item">
+        <div class="big cyan">$1.68M</div>
+        <p>Revenue por tintas (recurrente, cada año)</p>
+      </div>
+    </div>
+    <p style="text-align:center;color:var(--cyan);font-weight:700;margin-top:1rem;font-size:1.2rem">Las tintas generan 3.7x más revenue que el hardware</p>
+  </div>
+
+  <h3 style="color:var(--white);margin:2rem 0 1rem">Portafolio de Tintas</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Tipo de Tinta</th><th>Superficies</th><th>Industria</th><th>FOB USD</th><th>Retail MXN</th><th>Margen</th></tr>
+      <tr><td>Water-based</td><td>Cartón, papel, madera</td><td>Alimentos, logística</td><td>$4-8</td><td>$250-350</td><td>60-75%</td></tr>
+      <tr><td>Solvent-based</td><td>Plástico, metal, vidrio</td><td>Manufactura, farma</td><td>$6-12</td><td>$400-550</td><td>65-80%</td></tr>
+      <tr><td>Food-safe</td><td>Contacto directo alimentos</td><td>Alimentos premium</td><td>$12-18</td><td>$600-800</td><td>60-70%</td></tr>
+      <tr><td>UV-invisible</td><td>Anti-falsificación</td><td>Farma, lujo</td><td>$15-25</td><td>$900-1,200</td><td>70-85%</td></tr>
+    </table>
+  </div>
+
+  <h3 style="color:var(--white);margin:2rem 0 1rem">Consumo por Cliente</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Segmento</th><th>Cartuchos/Año</th><th>Gasto Anual MXN</th><th>LTV 3 Años</th></tr>
+      <tr><td>Panadería / Tortillería</td><td>36-60</td><td>$9,000-$21,000</td><td>$27,000-$63,000</td></tr>
+      <tr><td>Manufactura media</td><td>60-120</td><td>$24,000-$66,000</td><td>$72,000-$198,000</td></tr>
+      <tr><td>Logística / Alto volumen</td><td>180-360</td><td>$45,000-$126,000</td><td>$135,000-$378,000</td></tr>
+      <tr><td>Farmacéutica</td><td>96-180</td><td>$57,600-$144,000</td><td>$172,800-$432,000</td></tr>
+    </table>
+  </div>
+</div>
+</section>
+
+<!-- VERTICALES -->
+<section id="verticales" style="background:var(--bg2)">
+<div class="container reveal">
+  <h2 class="section-title">Verticales <span>Target</span></h2>
+  <p class="section-sub">3 industrias principales que representan 75%+ del mercado direccionable</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>🍞 Alimentos y Bebidas</h3>
+      <div style="color:var(--cyan);font-weight:700;font-size:.85rem;margin:.5rem 0">PRIORIDAD #1 — Score 9.2/10</div>
+      <ul>
+        <li>650,000+ establecimientos (INEGI)</li>
+        <li>NOM-051: fechas, lotes obligatorios</li>
+        <li>Pain: stickers cuestan $100-$750/día</li>
+        <li>ROI: se paga en 2-4 semanas</li>
+        <li>36-60 cartuchos/año por cliente</li>
+        <li>Potencial: 12M cartuchos/año sector</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🏭 Manufactura</h3>
+      <div style="color:var(--gold);font-weight:700;font-size:.85rem;margin:.5rem 0">PRIORIDAD #2 — Score 7.2/10</div>
+      <ul>
+        <li>12,000+ plantas + 18,000 almacenes</li>
+        <li>Nearshoring impulsa crecimiento 5.2%</li>
+        <li>Pain: Sharpie → errores → rechazo OEM</li>
+        <li>Penalidad OEM: $500K-$2M/día</li>
+        <li>60-120 cartuchos/año por cliente</li>
+        <li>Tinta solvent para metal/plástico</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>💊 Farmacéutica</h3>
+      <div style="color:var(--green);font-weight:700;font-size:.85rem;margin:.5rem 0">PRIORIDAD #3 — Score 8.8/10</div>
+      <ul>
+        <li>Revenue industria: $450B MXN/año</li>
+        <li>NOM-137: serialización obligatoria</li>
+        <li>Pain: marcado manual contamina</li>
+        <li>Multas: hasta $2M MXN + cierre</li>
+        <li>96-180 cartuchos/año por cliente</li>
+        <li>Márgenes premium (tinta solvent)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- COMPETENCIA -->
+<section id="competencia">
+<div class="container reveal">
+  <h2 class="section-title">Análisis <span>Competitivo</span></h2>
+  <p class="section-sub">Entramos en un gap de precio donde no hay marca fuerte</p>
+
+  <div class="gap-visual">
+    <h3 style="color:var(--white);margin-bottom:1.5rem;font-size:1rem">Mapa de Precios del Mercado (MXN)</h3>
+    <div class="gap-bar"><span class="name">Phezer PC11</span><div class="bar bar-phezer"></div><span class="price-label">$1,500-$2,200</span></div>
+    <div class="gap-bar"><span class="name">Rigel M1</span><div class="bar bar-rigel"></div><span class="price-label">$2,000-$3,000</span></div>
+    <div class="gap-bar"><span class="name">Bentsai B10</span><div class="bar bar-bentsai"></div><span class="price-label">$2,500-$3,500</span></div>
+    <div class="gap-highlight" style="margin:.8rem 0">⚡ GAP DE OPORTUNIDAD — No hay marca confiable entre $4,000 y $7,000</div>
+    <div class="gap-bar"><span class="name" style="color:var(--cyan);font-weight:700">★ MT1 (nosotros)</span><div class="bar bar-us1"></div><span class="price-label" style="color:var(--cyan);font-weight:700">$4,490</span></div>
+    <div class="gap-bar"><span class="name" style="color:var(--cyan);font-weight:700">★ MH08 (nosotros)</span><div class="bar bar-us2"></div><span class="price-label" style="color:var(--cyan);font-weight:700">$6,990</span></div>
+    <div class="gap-bar"><span class="name">Industrial</span><div class="bar bar-industrial"></div><span class="price-label">$25,000+</span></div>
+  </div>
+
+  <h3 style="color:var(--white);margin:2rem 0 1rem">Ventajas vs. Competencia</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Factor</th><th>Bentsai</th><th>Rigel</th><th>Phezer</th><th style="color:var(--cyan)">Nosotros</th></tr>
+      <tr><td>Firmware lock-in</td><td style="color:var(--red)">Sí (rompe cartuchos)</td><td>Desconocido</td><td>Desconocido</td><td style="color:var(--green)">No — abierto</td></tr>
+      <tr><td>Soporte español</td><td style="color:var(--gold)">"No garantizado"</td><td>Limitado</td><td style="color:var(--red)">Ninguno local</td><td style="color:var(--green)">100% nativo</td></tr>
+      <tr><td>Automatización ML</td><td style="color:var(--red)">Ninguna</td><td style="color:var(--red)">Ninguna</td><td style="color:var(--red)">Ninguna</td><td style="color:var(--green)">IA + pricing dinámico</td></tr>
+      <tr><td>CRM/Chatbot</td><td>Básico</td><td>Ninguno</td><td>Ninguno</td><td style="color:var(--green)">Automatizado</td></tr>
+      <tr><td>Precios públicos</td><td style="color:var(--red)">Opacos</td><td style="color:var(--red)">Opacos</td><td style="color:var(--green)">Sí (Amazon)</td><td style="color:var(--green)">Publicados</td></tr>
+    </table>
+  </div>
+</div>
+</section>
+
+<!-- TECH STACK -->
+<section style="background:var(--bg2)">
+<div class="container reveal">
+  <h2 class="section-title">Stack <span>Tecnológico</span></h2>
+  <p class="section-sub">La ventaja competitiva que ningún competidor puede replicar fácilmente</p>
+  <div class="card-grid">
+    <div class="card"><h3>🤖 Automatización ML</h3><p style="color:var(--text2)">Listados optimizados con IA, títulos SEO, fotos procesadas. 3x visibilidad vs. competencia manual.</p></div>
+    <div class="card"><h3>📈 Pricing Dinámico</h3><p style="color:var(--text2)">Monitoreo de competencia en tiempo real. Ajuste automático para maximizar margen.</p></div>
+    <div class="card"><h3>💬 Chatbot WhatsApp</h3><p style="color:var(--text2)">Atención 24/7 automatizada. Pre-venta, soporte, seguimiento. Reduce carga operativa 70%.</p></div>
+    <div class="card"><h3>📊 CRM Inteligente</h3><p style="color:var(--text2)">Predicción de recompra de tinta. "Tu cartucho se acaba pronto" — recompra proactiva. +40% LTV.</p></div>
+    <div class="card"><h3>📉 Dashboards</h3><p style="color:var(--text2)">Ventas, inventario, márgenes en tiempo real. Decisiones basadas en datos, no intuición.</p></div>
+    <div class="card"><h3>🔗 Integración Total</h3><p style="color:var(--text2)">ML + Amazon + Web + WhatsApp + CRM en un solo sistema. Operación lean con 4 personas.</p></div>
+  </div>
+</div>
+</section>
+
+<!-- FINANCIEROS -->
+<section id="financieros">
+<div class="container reveal">
+  <h2 class="section-title">Proyección <span>Financiera</span></h2>
+  <p class="section-sub">Break-even en mes 1. ROI de 467% en 6 meses sobre inversión de $80K MXN.</p>
+
+  <div class="chart-container">
+    <h3>Revenue Mensual: Hardware vs. Tintas (6 meses)</h3>
+    <canvas id="revenueChart" height="300"></canvas>
+  </div>
+
+  <div class="table-wrap" style="margin-top:2rem">
+    <table>
+      <tr><th>Mes</th><th>Impresoras</th><th>Rev. Hardware</th><th>Cartuchos</th><th>Rev. Tintas</th><th>Revenue Total</th><th>Utilidad Bruta</th></tr>
+      <tr><td>1</td><td>5</td><td>$22,450</td><td>15</td><td>$5,250</td><td>$27,700</td><td>$18,900</td></tr>
+      <tr><td>2</td><td>5</td><td>$22,450</td><td>30</td><td>$10,500</td><td>$32,950</td><td>$22,350</td></tr>
+      <tr><td>3</td><td>15</td><td>$67,350</td><td>75</td><td>$26,250</td><td>$93,600</td><td>$63,600</td></tr>
+      <tr><td>4</td><td>15</td><td>$67,350</td><td>120</td><td>$42,000</td><td>$109,350</td><td>$73,950</td></tr>
+      <tr><td>5</td><td>25</td><td>$112,250</td><td>195</td><td>$68,250</td><td>$180,500</td><td>$126,100</td></tr>
+      <tr><td>6</td><td>25</td><td>$112,250</td><td>280</td><td>$98,000</td><td>$210,250</td><td>$148,650</td></tr>
+      <tr style="font-weight:700;color:var(--cyan)"><td>Total</td><td>90</td><td>$404,100</td><td>715</td><td>$250,250</td><td>$654,350</td><td>$453,550</td></tr>
+    </table>
+  </div>
+
+  <div class="razor-box" style="margin-top:2rem">
+    <h3>Métricas Clave</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.5rem;margin-top:1rem">
+      <div class="razor-item"><div class="big cyan">$654K</div><p>Revenue 6 meses</p></div>
+      <div class="razor-item"><div class="big">69%</div><p>Margen bruto promedio</p></div>
+      <div class="razor-item"><div class="big cyan">467%</div><p>ROI sobre inversión $80K</p></div>
+      <div class="razor-item"><div class="big">$21.3K</div><p>LTV por cliente (Año 1)</p></div>
+    </div>
+  </div>
+
+  <div class="chart-container" style="margin-top:2rem">
+    <h3>Proyección Año 1: Revenue Acumulado</h3>
+    <canvas id="yearChart" height="250"></canvas>
+  </div>
+
+  <div class="table-wrap" style="margin-top:1rem">
+    <table>
+      <tr><th>Métrica Anual</th><th>Valor</th></tr>
+      <tr><td>Impresoras vendidas</td><td>250 unidades</td></tr>
+      <tr><td>Revenue hardware</td><td>$1,122,500 MXN</td></tr>
+      <tr><td>Cartuchos vendidos</td><td>3,600 unidades</td></tr>
+      <tr><td>Revenue tintas</td><td>$1,260,000 MXN</td></tr>
+      <tr><td style="color:var(--cyan);font-weight:700">Revenue total</td><td style="color:var(--cyan);font-weight:700">$2,382,500 MXN (~$140K USD)</td></tr>
+      <tr><td>COGS</td><td>$782,000 MXN</td></tr>
+      <tr><td>Utilidad bruta</td><td>$1,600,500 MXN (67%)</td></tr>
+      <tr><td style="color:var(--green);font-weight:700">EBITDA estimado</td><td style="color:var(--green);font-weight:700">~$1,300,000 MXN (~$76.5K USD)</td></tr>
+    </table>
+  </div>
+</div>
+</section>
+
+<!-- PLAN 90 DÍAS -->
+<section id="plan90" style="background:var(--bg2)">
+<div class="container reveal">
+  <h2 class="section-title">Plan de Acción <span>90 Días</span></h2>
+  <p class="section-sub">Semana por semana, desde constitución hasta primeras ventas</p>
+
+  <div class="timeline">
+    <div class="tl-item active">
+      <div class="week">Semana 1-2 — Fundación</div>
+      <h4>Constitución + Viaje a China</h4>
+      <p>SAS online, RFC, e-firma. Viaje a China para sourcing directo: negociar precios, confirmar specs MT1/MH08, ordenar muestras.</p>
+    </div>
+    <div class="tl-item">
+      <div class="week">Semana 3-4 — Legal</div>
+      <h4>Padrón de Importadores + Aduanas</h4>
+      <p>Inscripción Padrón SAT, designar agente aduanal, confirmar fracción arancelaria 8443.32.09, evaluar NOM-019.</p>
+    </div>
+    <div class="tl-item">
+      <div class="week">Semana 5-6 — Primer Pedido</div>
+      <h4>20 MT1 + 100 Cartuchos</h4>
+      <p>Colocar pedido, coordinar flete LCL a Lázaro Cárdenas, diseñar packaging OEM, configurar automatización ML.</p>
+    </div>
+    <div class="tl-item">
+      <div class="week">Semana 7-8 — Pre-Launch</div>
+      <h4>Listados + Chatbot + Contenido</h4>
+      <p>Listados ML optimizados con IA, chatbot WhatsApp activo, videos demo, paquetes B2B preparados.</p>
+    </div>
+    <div class="tl-item">
+      <div class="week">Semana 9-10 — Launch 🚀</div>
+      <h4>Primeras Ventas</h4>
+      <p>Activar listados ML, primeras 5-10 ventas a precio agresivo para generar reseñas, primeros contactos B2B.</p>
+    </div>
+    <div class="tl-item">
+      <div class="week">Semana 11-12 — Optimización</div>
+      <h4>Métricas + Reorden</h4>
+      <p>Analizar conversión y reviews, ajustar pricing dinámico, reordenar inventario, planear MH08.</p>
+    </div>
+    <div class="tl-item">
+      <div class="week">Semana 13 — Review Q1</div>
+      <h4>Dashboard + Decisión de Escala</h4>
+      <p>Revenue, márgenes, NPS en dashboard. Decisión de escalar o pivotar. Approach al papá de Kaori con datos reales.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- EQUIPO -->
+<section id="equipo">
+<div class="container reveal">
+  <h2 class="section-title">El <span>Equipo</span></h2>
+  <p class="section-sub">4 socios complementarios. Capital: $60K-$100K MXN entre los 4.</p>
+  
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="role">CTO / Automatización</div>
+      <h3>Raul Zhou</h3>
+      <p>Ingeniero + Maestría en IA. Consultor de IA. Automatización de listados ML, pricing dinámico, chatbots, CRM, dashboards.</p>
+    </div>
+    <div class="team-card">
+      <div class="role">Sourcing / China</div>
+      <h3>Kaori</h3>
+      <p>Socia en TSC Labs y The Skin Club. Su papá es importador grande (Baby Kaori). Puente directo con proveedores chinos.</p>
+    </div>
+    <div class="team-card">
+      <div class="role">COO / Operaciones</div>
+      <h3>Diego</h3>
+      <p>Socio de Kaori. Logística, almacén, administración, agente aduanal. Experiencia operativa en importación.</p>
+    </div>
+    <div class="team-card">
+      <div class="role">CMO / Marketing</div>
+      <h3>Dante Vega</h3>
+      <p>Marca personal fuerte. Contenido, ventas, B2B, demos presenciales. Network de negocios establecida.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- RIESGOS -->
+<section style="background:var(--bg2)">
+<div class="container reveal">
+  <h2 class="section-title">Riesgos y <span>Mitigación</span></h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Riesgo</th><th>Prob.</th><th>Impacto</th><th>Mitigación</th></tr>
+      <tr><td>Aranceles suben (reforma 2025)</td><td style="color:var(--gold)">Media</td><td style="color:var(--red)">Alto</td><td>Verificar SIAVI antes de cada pedido. DDP como alternativa.</td></tr>
+      <tr><td>Competidor baja precios</td><td style="color:var(--red)">Alta</td><td style="color:var(--gold)">Medio</td><td>Pricing dinámico. Diferenciación por servicio/tech.</td></tr>
+      <tr><td>Producto defectuoso (1er lote)</td><td style="color:var(--gold)">Media</td><td style="color:var(--red)">Alto</td><td>Muestras antes del lote. Garantía proveedor. Buffer.</td></tr>
+      <tr><td>Mercado más lento</td><td style="color:var(--gold)">Media</td><td style="color:var(--gold)">Medio</td><td>Break-even con 5 unidades/mes. Capital para 6 meses.</td></tr>
+      <tr><td>Tipo de cambio desfavorable</td><td style="color:var(--gold)">Media</td><td style="color:var(--gold)">Medio</td><td>Pricing dinámico absorbe variaciones.</td></tr>
+      <tr><td>Equipo se fragmenta</td><td style="color:var(--green)">Baja</td><td style="color:var(--red)">Crítico</td><td>Acuerdo de socios escrito. SAS constituida.</td></tr>
+    </table>
+  </div>
+</div>
+</section>
+
+<!-- COLABORACIÓN -->
+<section id="colaboracion">
+<div class="container reveal">
+  <h2 class="section-title">Propuesta de <span>Colaboración</span></h2>
+  <p class="section-sub">Un approach de confianza — no pedimos inversión, mostramos capacidades</p>
+
+  <div class="collab">
+    <h3>🤝 La Propuesta</h3>
+    <p style="color:var(--text2);margin-bottom:1.5rem">No pedimos dinero. Mostramos que somos un equipo serio, organizado, y con capacidades tecnológicas que amplifican cualquier operación de importación.</p>
+    
+    <blockquote>
+      "Si en algún momento quieres lanzar un producto nuevo o expandir líneas, podemos colaborar. Nosotros ponemos la capacidad tech y operativa, tú pones la infraestructura de importación. Win-win."
+    </blockquote>
+
+    <div class="collab-grid">
+      <div class="collab-item">
+        <div class="icon">⚡</div>
+        <h4>Stack Tecnológico</h4>
+        <p>IA, automatización ML, pricing, CRM, chatbot</p>
+      </div>
+      <div class="collab-item">
+        <div class="icon">📊</div>
+        <h4>Resultados Reales</h4>
+        <p>Ventas, revenue, márgenes documentados</p>
+      </div>
+      <div class="collab-item">
+        <div class="icon">👥</div>
+        <h4>Equipo Complementario</h4>
+        <p>Tech + Sourcing + Ops + Marketing</p>
+      </div>
+      <div class="collab-item">
+        <div class="icon">🔄</div>
+        <h4>Modelo Replicable</h4>
+        <p>Aplicable a cualquier producto importado</p>
+      </div>
+    </div>
+
+    <div style="margin-top:2rem;padding:1.5rem;background:rgba(0,0,0,.3);border-radius:8px">
+      <h4 style="color:var(--white);margin-bottom:.5rem">Qué buscamos (largo plazo)</h4>
+      <ul style="list-style:none">
+        <li style="padding:.3rem 0;color:var(--text2);font-size:.9rem">✓ Acceso a infraestructura de importación (volúmenes, agente aduanal, almacén)</li>
+        <li style="padding:.3rem 0;color:var(--text2);font-size:.9rem">✓ Co-inversión en líneas de producto nuevas (cuando tenga sentido)</li>
+        <li style="padding:.3rem 0;color:var(--text2);font-size:.9rem">✓ Mentorship de alguien con 20+ años importando</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom:.5rem">Plan de Negocio — Impresoras Portátiles Inkjet México</p>
+  <p>Marzo 2026 · Confidencial · Todos los datos basados en research verificado</p>
+</footer>
+
+<!-- CHARTS JS -->
+<script>
+// Revenue Chart (6 months)
+(function(){
+  const canvas = document.getElementById('revenueChart');
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  
+  function draw(){
+    const w = canvas.parentElement.clientWidth - 64;
+    const h = 300;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    ctx.scale(dpr, dpr);
+    
+    const hardware = [22450,22450,67350,67350,112250,112250];
+    const ink = [5250,10500,26250,42000,68250,98000];
+    const months = ['Mes 1','Mes 2','Mes 3','Mes 4','Mes 5','Mes 6'];
+    const max = 220000;
+    const chartL = 60, chartR = w - 20, chartT = 20, chartB = h - 40;
+    const chartW = chartR - chartL;
+    const chartH = chartB - chartT;
+    const barGroupW = chartW / 6;
+    const barW = barGroupW * .3;
+    
+    // Grid
+    ctx.strokeStyle = 'rgba(255,255,255,.05)';
+    ctx.lineWidth = 1;
+    for(let i=0;i<=4;i++){
+      const y = chartT + (chartH/4)*i;
+      ctx.beginPath();ctx.moveTo(chartL,y);ctx.lineTo(chartR,y);ctx.stroke();
+      ctx.fillStyle='#556677';ctx.font='11px sans-serif';ctx.textAlign='right';
+      ctx.fillText('$'+Math.round((max-max/4*i)/1000)+'K',chartL-8,y+4);
+    }
+    
+    // Bars
+    for(let i=0;i<6;i++){
+      const x = chartL + barGroupW*i + barGroupW*.15;
+      const hH = (hardware[i]/max)*chartH;
+      const iH = (ink[i]/max)*chartH;
+      
+      // Hardware bar
+      ctx.fillStyle='rgba(255,255,255,.15)';
+      ctx.beginPath();ctx.roundRect(x,chartB-hH,barW,hH,3);ctx.fill();
+      
+      // Ink bar
+      const grd = ctx.createLinearGradient(0,chartB-iH,0,chartB);
+      grd.addColorStop(0,'#00e5ff');grd.addColorStop(1,'#0091ea');
+      ctx.fillStyle = grd;
+      ctx.beginPath();ctx.roundRect(x+barW+4,chartB-iH,barW,iH,3);ctx.fill();
+      
+      // Label
+      ctx.fillStyle='#778899';ctx.font='11px sans-serif';ctx.textAlign='center';
+      ctx.fillText(months[i],x+barW+2,chartB+16);
+    }
+    
+    // Legend
+    ctx.fillStyle='rgba(255,255,255,.15)';ctx.fillRect(chartR-180,chartT,12,12);
+    ctx.fillStyle='#778899';ctx.font='11px sans-serif';ctx.textAlign='left';
+    ctx.fillText('Hardware',chartR-164,chartT+10);
+    const lg = ctx.createLinearGradient(chartR-90,0,chartR-78,0);
+    lg.addColorStop(0,'#00e5ff');lg.addColorStop(1,'#0091ea');
+    ctx.fillStyle=lg;ctx.fillRect(chartR-90,chartT,12,12);
+    ctx.fillStyle='#778899';ctx.fillText('Tintas',chartR-74,chartT+10);
+  }
+  draw();
+  window.addEventListener('resize',draw);
+})();
+
+// Year chart (accumulated revenue)
+(function(){
+  const canvas = document.getElementById('yearChart');
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  
+  function draw(){
+    const w = canvas.parentElement.clientWidth - 64;
+    const h = 250;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    ctx.scale(dpr, dpr);
+    
+    // Monthly accumulated data
+    const rev = [27.7,60.65,154.25,263.6,444.1,654.35,870,1100,1350,1620,1950,2382.5];
+    const months = ['E','F','M','A','M','J','J','A','S','O','N','D'];
+    const max = 2600;
+    const chartL = 60, chartR = w - 20, chartT = 20, chartB = h - 35;
+    const chartW = chartR - chartL;
+    const chartH = chartB - chartT;
+    
+    // Grid
+    ctx.strokeStyle = 'rgba(255,255,255,.05)';
+    for(let i=0;i<=4;i++){
+      const y = chartT + (chartH/4)*i;
+      ctx.beginPath();ctx.moveTo(chartL,y);ctx.lineTo(chartR,y);ctx.stroke();
+      ctx.fillStyle='#556677';ctx.font='11px sans-serif';ctx.textAlign='right';
+      ctx.fillText('$'+Math.round((max-max/4*i))+'K',chartL-8,y+4);
+    }
+    
+    // Area
+    const grd = ctx.createLinearGradient(0,chartT,0,chartB);
+    grd.addColorStop(0,'rgba(0,229,255,.2)');grd.addColorStop(1,'rgba(0,229,255,.01)');
+    ctx.beginPath();
+    ctx.moveTo(chartL,chartB);
+    for(let i=0;i<12;i++){
+      const x = chartL + (chartW/11)*i;
+      const y = chartB - (rev[i]/max)*chartH;
+      if(i===0) ctx.lineTo(x,y); else ctx.lineTo(x,y);
+    }
+    ctx.lineTo(chartR,chartB);ctx.closePath();
+    ctx.fillStyle=grd;ctx.fill();
+    
+    // Line
+    ctx.beginPath();
+    for(let i=0;i<12;i++){
+      const x = chartL + (chartW/11)*i;
+      const y = chartB - (rev[i]/max)*chartH;
+      if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    }
+    ctx.strokeStyle='#00e5ff';ctx.lineWidth=2.5;ctx.stroke();
+    
+    // Dots + labels
+    for(let i=0;i<12;i++){
+      const x = chartL + (chartW/11)*i;
+      const y = chartB - (rev[i]/max)*chartH;
+      ctx.beginPath();ctx.arc(x,y,3,0,Math.PI*2);ctx.fillStyle='#00e5ff';ctx.fill();
+      ctx.fillStyle='#778899';ctx.font='10px sans-serif';ctx.textAlign='center';
+      ctx.fillText(months[i],x,chartB+14);
+    }
+    
+    // Final value
+    const lastX = chartR;
+    const lastY = chartB - (rev[11]/max)*chartH;
+    ctx.fillStyle='#00e5ff';ctx.font='bold 13px sans-serif';
+    ctx.fillText('$2.38M',lastX,lastY-12);
+  }
+  draw();
+  window.addEventListener('resize',draw);
+})();
+
+// Intersection Observer for reveal animations
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
